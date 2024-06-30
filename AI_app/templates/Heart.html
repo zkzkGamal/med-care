@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+    {%load static%}
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>heart Consultation</title>
+    
+    <!-- <link rel="stylesheet" href="./css2/style1.css"> -->
+    <link rel="stylesheet" href="{% static 'model-ai/css2/all.css'%}">
+    <link rel="stylesheet" href="{% static 'model-ai/css2/style1.css'%}">
+    <link rel="stylesheet" href="{% static 'model-ai/css2/Style.css'%}"> 
+    <link rel="stylesheet" href="{% static 'model-ai/css2/all.min.css'%}">
+    <link rel="stylesheet" href="{% static 'model-ai/css2/normalize.css'%}">
+    <link rel="stylesheet" href="{% static 'Home/CSS/all.min.css'%}">
+    <link rel="stylesheet" href="{% static 'model-ai/css2/consaltation.css'%}">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;900&family=Josefin+Sans:wght@300&family=Open+Sans:wght@400;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Work+Sans:ital,wght@0,400;0,600;0,800;1,200;1,300;1,400;1,500&display=swap"
+        rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;900&family=Josefin+Sans:wght@300&family=Open+Sans:wght@400;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Work+Sans:ital,wght@0,400;0,600;0,800;1,200;1,300;1,400;1,500&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../fontawesome-free-6.2.0-web/css/all.css">
+    <style>
+        .span{
+            border-left: 1px solid #00507C;
+            border-right: 1px solid #00507C;
+            padding: 0px 5px;
+            position: relative;
+            right: 200%;
+            font-size: 16px;
+            font-weight: 420;
+        }
+        .span1{
+            border-left: 1px solid #00507C;
+            border-right: 1px solid #00507C;
+            padding: 0px 5px;
+            position: absolute;
+            left: 100%;
+            font-size: 16px;
+            font-weight: 420;
+            transform: translateY(-40px);
+        }
+    </style>
+</head>
+
+<body>
+    <header class="container">
+        <div class="logo_cont">
+            
+               <div class="logo">
+                 <img src="{%static 'model-ai/images/logo.png' %}" alt="">
+                </div>
+            <div class="logoh1">
+                <h1><a href="{%url 'Home'%}"> Med</a><span><a href="{%url 'Home'%}">care</a></span></h1>
+            </div>
+        </div>
+       
+            
+            
+            <ul>
+                <div class="headlinkss">
+                    <ul>
+                <li><a href="{%url 'Home'%}">Home</a></li>
+                <li><a href="{%url 'cards'%}">Specialities</a></li>
+                <li>    
+                </div> 
+                    <div class="dropdown"> 
+                <a href="{% url 'AI:main'%}">
+                    <p class="dropbtn activatedd">Consultation</p>
+                </a>
+                <div class="dropdown-content headlinks">
+                    <a href="{% url 'AI:heart'%}">Heart Consultation</a>
+                    <a href="{% url 'AI:diabetes'%}">Diabetes Consultation</a>
+                </div>
+            </div>
+            </li>
+            </ul>
+            <div class="headlinkss">
+                <ul>
+                    <li><a href="#">News</a></li>
+                    <li><a href="#">Hospital</a></li>
+                </ul>
+            </div>
+
+            {% if user.is_authenticated %}
+            <div class="btns-head">
+                {% if doctor %}
+                <div class="btn-signin btn">
+                    <a href="{%url 'reception'%}" style="color: #0d6efd;"><i class="fa-solid fa-user"></i></a>
+                </div>
+                {%else%}
+                {%endif%}
+                <div class="btn-signup btn">
+                    <a href="{%url 'logout' %}"> <input type="button" class="btn-signup btn" value="logout"></a>
+                </div>
+            </div>
+            {%else%}
+            <div class="btns-head">
+                <div class="btn-signin btn">
+                    <a href="{% url 'login'%}"> <input type="button" class="btn-signup btn" value="Sign-in"></a>
+                </div>
+                <div class="btn-signup btn">
+                    <a href="{%url 'signup' %}"> <input type="button" class="btn-signup btn" value="Sign-up"></a>
+                </div>
+            </div>
+            {%endif%}
+    </header>
+
+    <div class="container">
+        <div class="cont1">
+            <div class="form1">
+                <form action="" method="POST" class="diabetes" id="diabetes" onsubmit="">
+                    {% csrf_token %}
+                    <input type="number" required  class="in1" name="ag1" step="0.001" id="age">
+                    <span class="span">aga</span>
+                    <input type="number" required  class="in2" name="gender" step="0.001" id="gender">
+                    <span class="span1">gender</span>
+                    <br>
+                    <input type="number" required  class="in1" name="impluse" step="0.001" id="impluse">
+                    <span class="span">impluse</span>
+                    <input type="number" required  class="in2" name="pressureHigh" step="0.001" id="pressureHigh">
+                    <span class="span1">pressureHigh</span>
+                    <br>
+                    <input type="number" required  class="in1" name="pressureLow" step="0.001" id="pressureLow">
+                    <span class="span">pressureLow</span>
+                    <input type="number" required class="in2" name="Glucose1" step="0.001" id="Glucose">
+                    <span class="span1">Glucose</span>
+                    <br>
+                    <input type="number" required  class="in1" name="Kcm" step="0.001" id="kcm">
+                    <span class="span">Kcm</span>
+                    <input type="number" required  class="in2" name="troponin" step="0.001" id="troponin">
+                    <span class="span1">troponin</span> <br>
+
+                    <input type="submit" value="consult" class="btnnn" onclick="checkData()"><br><br><br><br>
+                    <h2>{{r3}}</h2>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+
+<script>
+    age = document.getElementById('age')
+    gender = document.getElementById("gender")
+    impluse = document.getElementById("impluse")
+    pressureHigh = document.getElementById("pressureHigh")
+    pressureLow = document.getElementById("pressureLow")
+    Glucose = document.getElementById("Glucose")
+    kcm = document.getElementById("kcm")
+    troponin = document.getElementById("troponin")
+    form = document.getElementById("diabetes")
+       
+    let handleSubmit = async(e) => {
+        e.preventDefault()
+    }    
+    checkData = function(){
+        if((age.value > 1 || age.value < 100) && (impluse.value > 30 || impluse.value <500)
+                && (pressureHigh.value > 50 || pressureHigh.value<1000)
+                &&(pressureLow.value > 50 || pressureLow.value<1000) 
+                && (Glucose.value > 20 || Glucose.value < 1000) 
+                && kcm.value< 15 && troponin.value <1){
+            form.onsubmit()=function(){
+                return true
+            }
+        }else{
+            alert('please check your input')
+            form.addEventListener('submit' , handleSubmit)
+        }
+    }
+
+
+
+</script>
+</body>
+
+</html>
